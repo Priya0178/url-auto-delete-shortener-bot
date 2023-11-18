@@ -243,10 +243,14 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
+    batman = re.sub(r'@\w+', '', f_caption)
+    batman = re.sub('#𝙊𝙍𝙂𝙋𝙧𝙞𝙢𝙚', '', batman)
+    batman = re.sub('#𝙉𝙤𝟏', '', batman)
+    batman = re.sub('#𝙐𝙃𝘿𝙋𝙧𝙞𝙢𝙚', '', batman)   
     await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
-        caption=f_caption,
+        caption=batman,
         reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('sᴜʙsᴄʀɪʙᴇ', url='https://youtube.com/@GreyMattersYT') ] ] ),
         protect_content=True if pre == 'filep' else False,
         )
